@@ -1,6 +1,6 @@
 # Source registry
 
-The authoritative links used by the [calculation methodology on buildcalcs.io](https://buildcalcs.io/calculation-methodology). This is a copy of the site's single source registry; the live pages remain the source of truth. `checked` is a manual verification date, not a build date.
+The authoritative links used by the calculators on **buildcalcs.io**. This is a copy of the site's single source registry; the live pages remain the source of truth. `checked` is a manual verification date, not a build date.
 
 | id | Label | Tier | Numbers covered | URL | Checked |
 | --- | --- | --- | --- | --- | --- |
@@ -15,7 +15,7 @@ The authoritative links used by the [calculation methodology on buildcalcs.io](h
 | crsi-rebar | CRSI — reinforcing steel data and resources | Industry association — standard rebar unit weights (lb/ft) | Rebar unit weight and grade | https://www.crsi.org/rebar | 2026-11-22 |
 | prices-illustrative | No source — illustrative ranges only, never a live quote | No source — illustrative ranges only | Price ranges | — | 2026-11-22 |
 
-Price figures on buildcalcs.io are illustrative ranges, never a live quote. No engineer has reviewed these formulas; `reviewedBy` stays null on every calculator page.
+Price figures on buildcalcs.io are illustrative ranges, never a live quote; the [installed slab cost](https://buildcalcs.io/cost/concrete-slab-cost-calculator) page shows how the lines are separated. No engineer has reviewed these formulas; `reviewedBy` stays null on every calculator page. The fast-setting yield feeds the [post-hole calculator](https://buildcalcs.io/concrete/post-hole-calculator).
 
 
-See [calculators.md](calculators.md) for which source supports which formula.
+See [calculators.md](calculators.md) for which source supports which formula; the same registry drives the [Sonotube calculator](https://buildcalcs.io/concrete/sonotube-calculator).

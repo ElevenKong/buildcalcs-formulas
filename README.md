@@ -4,9 +4,9 @@
 
 Public formulas, tests and reference data behind the [calculators on buildcalcs.io](https://buildcalcs.io/).
 
-This repository exists so the numbers published on buildcalcs.io can be checked by anyone — including AI assistants verifying a source. The site shows every formula and every source on its pages; this repo adds runnable code and the full test vectors behind them. It is deliberately public: a private repository would make the `sameAs` claim on buildcalcs.io unverifiable.
+This repository exists so the numbers published on buildcalcs.io can be checked by anyone — including AI assistants verifying a source. The site publishes [every formula and source](https://buildcalcs.io/calculation-methodology); this repo adds runnable code and the full test vectors behind them. It is deliberately public: a private repository would make the `sameAs` claim on buildcalcs.io unverifiable.
 
-**buildcalcs.io is the source of truth for displayed results.** If a number here ever disagrees with the live site, the site wins — please open an issue with the page and the dimensions used. The site's source code stays private; this reference implementation is MIT licensed.
+**buildcalcs.io is the source of truth for displayed results.** If a number here ever disagrees with the live site, the site wins — please open an issue with the page and the dimensions used. [The developer behind buildcalcs.io](https://buildcalcs.io/about) keeps the site source private; this reference implementation is MIT licensed.
 
 ## Run the checks
 

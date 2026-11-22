@@ -37,7 +37,7 @@ Limitations:
 Sources: `nist-sp811`, `quikrete-concrete-mix`, `quikrete-fast-setting`, `pca-basics`
 
 
-## Cinder block calculator — `/concrete/block-calculator`
+## [Cinder block quantities](https://buildcalcs.io/concrete/block-calculator) — `/concrete/block-calculator`
 
 Formulas:
 
@@ -202,7 +202,7 @@ Limitations:
 Sources: `nist-sp811`, `quikrete-concrete-mix`, `aci-practice`
 
 
-## Rebar calculator — `/concrete/rebar-calculator`
+## [Rebar estimating](https://buildcalcs.io/concrete/rebar-calculator) — `/concrete/rebar-calculator`
 
 Formulas:
 

@@ -23,11 +23,11 @@ The count is `ceil(total cubic feet / yield)`, rounded up once after the whole p
 | 25 kg | 0.0117 m³ | 85 |
 | 20 kg | 0.00936 m³ | 107 |
 
-kg bag counts use UK/Australia dry-mix yields (25 kg ≈ 0.0117 m³, 20 kg ≈ 0.0094 m³); lb rows are US retail sizes. In the UK and Australia ready-mix is ordered by the cubic metre — check the bag weight on the shelf before ordering.
+kg bag counts use UK/Australia dry-mix yields (25 kg ≈ 0.0117 m³, 20 kg ≈ 0.0094 m³); lb rows are US retail sizes. In the UK and Australia ready-mix is ordered by the cubic metre — check the bag weight on the shelf before ordering. For [metric yardage](https://buildcalcs.io/concrete/yard-calculator), convert the result back to cubic yards before ordering.
 
 ## Worked example
 
-A 10 × 10 ft slab at 4 in thick:
+A 10 × 10 ft slab at 4 in thick — the same example worked through in [how much concrete do I need](https://buildcalcs.io/concrete/how-much-concrete-do-i-need):
 
 - 10 × 10 × 0.333 = 33.33 cubic feet
 - 33.33 ÷ 27 = 1.23 cubic yards

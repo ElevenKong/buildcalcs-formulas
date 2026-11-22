@@ -1,6 +1,6 @@
 # Practical guides — numeric facts
 
-The worked numbers published in the [four practical guides](https://buildcalcs.io/concrete). Lines below are copied from the live guide copy; the pages themselves remain the source of truth.
+The worked numbers published in the four practical guides on **buildcalcs.io**. Lines below are copied from the live guide copy; the pages themselves remain the source of truth.
 
 ## How Much Concrete Do I Need? — `/concrete/how-much-concrete-do-i-need`
 
@@ -23,7 +23,7 @@ The worked numbers published in the [four practical guides](https://buildcalcs.i
 - FAQ: a 24 × 24 slab at 4 in = 192 cu ft / 7.11 yd³; 10.7 yd³ at 6 in.
 
 
-## How Much Is a Yard of Concrete? — `/concrete/how-much-is-a-yard-of-concrete`
+## [What a cubic yard covers](https://buildcalcs.io/concrete/how-much-is-a-yard-of-concrete) — `/concrete/how-much-is-a-yard-of-concrete`
 
 - A cubic yard is 27 cubic feet of concrete weighing about 4,000 lb.
 - A 4,000 PSI mix for a driveway costs more per yard than a 2,500 PSI mix for a shed base.
@@ -37,7 +37,7 @@ The worked numbers published in the [four practical guides](https://buildcalcs.i
 - FAQ: 10 × 10 slab needs 1.23 cubic yards at 4 in, 1.85 at 6 in; order the next quarter-yard up.
 
 
-## How Long Does Concrete Take to Cure? — `/concrete/how-long-does-concrete-take-to-cure`
+## [Concrete cure time by day](https://buildcalcs.io/concrete/how-long-does-concrete-take-to-cure) — `/concrete/how-long-does-concrete-take-to-cure`
 
 - Initial set 2–4 hours; final set 8–24 hours; light foot traffic 24–48 hours.
 - Forms off vertical faces 24 hours; ~70% of design strength at 7 days; forms off slab edges 7 days; full design strength 28 days.
@@ -50,7 +50,7 @@ The worked numbers published in the [four practical guides](https://buildcalcs.i
 - FAQ: below 40°F (4°C) the reaction almost stops and freezing water will damage the mix.
 
 
-## Concrete Mix Ratio Chart — `/concrete/mix-ratio`
+## [Concrete mix ratios](https://buildcalcs.io/concrete/mix-ratio) — `/concrete/mix-ratio`
 
 - 1 : 2 : 3 → ~3,500–4,000 PSI → slabs, patios, walkways, general.
 - 1 : 2 : 4 → ~3,000 PSI → general purpose, shed bases.
