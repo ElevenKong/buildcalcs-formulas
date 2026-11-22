@@ -1,6 +1,6 @@
 # Calculator formulas and assumptions
 
-Every calculator on **buildcalcs.io** uses one of the nine branches below. The formulas are written here as plain text so they can be read and checked without rendering software. The live pages on buildcalcs.io are the source of truth for displayed results; this file is the reference copy.
+Every calculator in the [buildcalcs.io calculator set](https://buildcalcs.io/concrete) uses one of the nine branches below. The formulas are written here as plain text so they can be read and checked without rendering software. The live pages on buildcalcs.io are the source of truth for displayed results; this file is the reference copy.
 
 All nine entries were first published `2026-11-20`, last updated `2026-11-22`, and have no named reviewer (`reviewedBy` is null). These are quantity estimates, not structural design.
 

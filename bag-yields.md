@@ -1,6 +1,6 @@
 # Concrete bag yields and counts
 
-Reference data used by the calculators on **buildcalcs.io**. Every figure below is copied from the sources named at the end of this file. The live pages on buildcalcs.io are the source of truth for displayed results.
+Reference data used by the [concrete quantity calculators](https://buildcalcs.io/concrete/quikrete-calculator). Every figure below is copied from the sources named at the end of this file. The live pages on buildcalcs.io are the source of truth for displayed results.
 
 ## US retail bag sizes
 

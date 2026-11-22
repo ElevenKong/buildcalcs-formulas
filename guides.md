@@ -1,6 +1,6 @@
 # Practical guides — numeric facts
 
-The worked numbers published in the four practical guides on **buildcalcs.io**. Lines below are copied from the live guide copy; the pages themselves remain the source of truth.
+The worked numbers published in the [four practical guides](https://buildcalcs.io/concrete). Lines below are copied from the live guide copy; the pages themselves remain the source of truth.
 
 ## How Much Concrete Do I Need? — `/concrete/how-much-concrete-do-i-need`
 

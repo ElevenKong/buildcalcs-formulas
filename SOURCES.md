@@ -1,6 +1,6 @@
 # Source registry
 
-The authoritative links used by the calculators on **buildcalcs.io**. This is a copy of the site's single source registry; the live pages remain the source of truth. `checked` is a manual verification date, not a build date.
+The authoritative links used by the [calculation methodology on buildcalcs.io](https://buildcalcs.io/calculation-methodology). This is a copy of the site's single source registry; the live pages remain the source of truth. `checked` is a manual verification date, not a build date.
 
 | id | Label | Tier | Numbers covered | URL | Checked |
 | --- | --- | --- | --- | --- | --- |

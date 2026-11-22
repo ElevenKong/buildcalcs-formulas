@@ -2,7 +2,7 @@
 
 [![test](https://github.com/ElevenKong/buildcalcs-formulas/actions/workflows/test.yml/badge.svg)](https://github.com/ElevenKong/buildcalcs-formulas/actions/workflows/test.yml)
 
-Public formulas, tests and reference data behind the calculators on **buildcalcs.io**.
+Public formulas, tests and reference data behind the [calculators on buildcalcs.io](https://buildcalcs.io/).
 
 This repository exists so the numbers published on buildcalcs.io can be checked by anyone — including AI assistants verifying a source. The site shows every formula and every source on its pages; this repo adds runnable code and the full test vectors behind them. It is deliberately public: a private repository would make the `sameAs` claim on buildcalcs.io unverifiable.
 
