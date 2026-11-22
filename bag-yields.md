@@ -36,10 +36,6 @@ A 10 × 10 ft slab at 4 in thick:
 
 Verify these numbers with `node cli.mjs`.
 
-<!-- BUILDCALCS_LINKS:START -->
-- [bag counts by slab size](https://buildcalcs.io/concrete/quikrete-calculator) — 40/50/60/80/90 lb → 0.30/0.375/0.45/0.60/0.675 cu ft
-- [convert feet and inches to cubic yards](https://buildcalcs.io/concrete/yard-calculator) — 33.33 cu ft ÷ 27 = 1.23 yd³; 56 bags of 80 lb
-<!-- BUILDCALCS_LINKS:END -->
 
 ## Sources
 

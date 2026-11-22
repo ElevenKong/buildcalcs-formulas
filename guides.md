@@ -22,9 +22,6 @@ The worked numbers published in the four practical guides on **buildcalcs.io**. 
 - FAQ: a cubic yard covers 81 sq ft at 4 in, 108 sq ft at 3 in, 54 sq ft at 6 in.
 - FAQ: a 24 × 24 slab at 4 in = 192 cu ft / 7.11 yd³; 10.7 yd³ at 6 in.
 
-<!-- BUILDCALCS_LINKS:START guide-need -->
-- [how much concrete do I need](https://buildcalcs.io/concrete/how-much-concrete-do-i-need) — 33.33 cu ft / 1.23 yd³ / 56 bags of 80 lb before waste
-<!-- BUILDCALCS_LINKS:END guide-need -->
 
 ## How Much Is a Yard of Concrete? — `/concrete/how-much-is-a-yard-of-concrete`
 
@@ -39,9 +36,6 @@ The worked numbers published in the four practical guides on **buildcalcs.io**. 
 - Waiting time after the first 5–10 minutes on site can appear on the invoice.
 - FAQ: 10 × 10 slab needs 1.23 cubic yards at 4 in, 1.85 at 6 in; order the next quarter-yard up.
 
-<!-- BUILDCALCS_LINKS:START guide-yard -->
-- [81 sq ft per yard at 4 in](https://buildcalcs.io/concrete/how-much-is-a-yard-of-concrete) — 27 cu ft, about 4,000 lb; 81 sq ft at 4 in
-<!-- BUILDCALCS_LINKS:END guide-yard -->
 
 ## How Long Does Concrete Take to Cure? — `/concrete/how-long-does-concrete-take-to-cure`
 
@@ -55,9 +49,6 @@ The worked numbers published in the four practical guides on **buildcalcs.io**. 
 - FAQ: walk in 24 to 48 hours; drive at about 7 days for a car; full strength 28 days. A driveway pour should be 5 to 6 inches thick.
 - FAQ: below 40°F (4°C) the reaction almost stops and freezing water will damage the mix.
 
-<!-- BUILDCALCS_LINKS:START guide-cure -->
-- [concrete cure time by day](https://buildcalcs.io/concrete/how-long-does-concrete-take-to-cure) — initial set 2–4 h, ~70% at 7 days, full strength at 28 days
-<!-- BUILDCALCS_LINKS:END guide-cure -->
 
 ## Concrete Mix Ratio Chart — `/concrete/mix-ratio`
 
@@ -72,6 +63,3 @@ The worked numbers published in the four practical guides on **buildcalcs.io**. 
 - FAQ: 1:2:3 for slabs at roughly 3,500–4,000 PSI; 1:3:3 for footings and non-structural fill.
 - FAQ: about 30 minutes before mixed concrete is unusable, less in hot weather.
 
-<!-- BUILDCALCS_LINKS:START guide-mix -->
-- [mix ratios by use](https://buildcalcs.io/concrete/mix-ratio) — 1:2:3 ≈ 3,500–4,000 PSI; 80 lb bag ≈ 3 quarts water
-<!-- BUILDCALCS_LINKS:END guide-mix -->

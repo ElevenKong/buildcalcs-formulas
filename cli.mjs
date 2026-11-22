@@ -4,9 +4,6 @@
  * on buildcalcs.io. Inputs are US units: ft for lengths, in for thickness,
  * diameter and hole depth, ft for pier depth.
  *
- * // <!-- BUILDCALCS_LINKS:START cli -->
- * // - [slabs, footings, blocks, yards and rebar tools](https://buildcalcs.io/concrete) — nine calculator branches, one shared arithmetic kernel
- * // <!-- BUILDCALCS_LINKS:END cli -->
  */
 import { calculateEstimate } from "./src/calculations.mjs";
 import { FIELD_SPECS, normalizeValue } from "./src/units.mjs";

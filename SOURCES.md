@@ -17,9 +17,5 @@ The authoritative links used by the calculators on **buildcalcs.io**. This is a 
 
 Price figures on buildcalcs.io are illustrative ranges, never a live quote. No engineer has reviewed these formulas; `reviewedBy` stays null on every calculator page.
 
-<!-- BUILDCALCS_LINKS:START -->
-- [how BuildCalcs verifies its formulas](https://buildcalcs.io/calculation-methodology) — 40 hand-worked test cases; all sources checked 2026-11-22
-- [why two yard quotes differ](https://buildcalcs.io/concrete/how-much-is-a-yard-of-concrete) — 27 cu ft, about 4,000 lb; 81 sq ft at 4 in
-<!-- BUILDCALCS_LINKS:END -->
 
 See [calculators.md](calculators.md) for which source supports which formula.

@@ -36,9 +36,6 @@ Limitations:
 
 Sources: `nist-sp811`, `quikrete-concrete-mix`, `quikrete-fast-setting`, `pca-basics`
 
-<!-- BUILDCALCS_LINKS:START home -->
-- [free calculator with every formula shown](https://buildcalcs.io/) — 10 × 10 ft slab at 4 in = 1.23 yd³ / 56 bags of 80 lb
-<!-- BUILDCALCS_LINKS:END home -->
 
 ## Cinder block calculator — `/concrete/block-calculator`
 
@@ -63,9 +60,6 @@ Limitations:
 
 Sources: `cmha-technical`, `quikrete-concrete-mix`, `quikrete-mortar-mix`, `nist-sp811`
 
-<!-- BUILDCALCS_LINKS:START block -->
-- [1.125 blocks per square foot](https://buildcalcs.io/concrete/block-calculator) — 80 sq ft wall = 90 blocks, 3 bags of 80 lb mortar
-<!-- BUILDCALCS_LINKS:END block -->
 
 ## Concrete yard calculator — `/concrete/yard-calculator`
 
@@ -89,9 +83,6 @@ Limitations:
 
 Sources: `nist-sp811`, `quikrete-concrete-mix`, `pca-basics`
 
-<!-- BUILDCALCS_LINKS:START yard -->
-- [the ÷27 step in concrete yardage](https://buildcalcs.io/concrete/yard-calculator) — 33.33 cu ft ÷ 27 = 1.23 yd³; 56 bags of 80 lb
-<!-- BUILDCALCS_LINKS:END yard -->
 
 ## Slab calculator — `/concrete/slab-calculator`
 
@@ -115,9 +106,6 @@ Limitations:
 
 Sources: `nist-sp811`, `aci-practice`, `quikrete-concrete-mix`
 
-<!-- BUILDCALCS_LINKS:START slab -->
-- [slab thickness by use](https://buildcalcs.io/concrete/slab-calculator) — 81 sq ft covered by one cubic yard at 4 in
-<!-- BUILDCALCS_LINKS:END slab -->
 
 ## Quikrete calculator — `/concrete/quikrete-calculator`
 
@@ -141,9 +129,6 @@ Limitations:
 
 Sources: `quikrete-concrete-mix`, `quikrete-fast-setting`, `nist-sp811`
 
-<!-- BUILDCALCS_LINKS:START quikrete -->
-- [80 lb Quikrete bag yields 0.60 cu ft](https://buildcalcs.io/concrete/quikrete-calculator) — 40/50/60/80/90 lb → 0.30/0.375/0.45/0.60/0.675 cu ft
-<!-- BUILDCALCS_LINKS:END quikrete -->
 
 ## Concrete slab cost calculator — `/cost/concrete-slab-cost-calculator`
 
@@ -168,9 +153,6 @@ Limitations:
 
 Sources: `rsmeans-cost`, `nist-sp811`, `quikrete-concrete-mix`
 
-<!-- BUILDCALCS_LINKS:START cost -->
-- [material, delivery and labor for a slab](https://buildcalcs.io/cost/concrete-slab-cost-calculator) — $165/yd³ material, $5/ft² labor, $1.5/ft² base — illustrative only
-<!-- BUILDCALCS_LINKS:END cost -->
 
 ## Post-hole calculator — `/concrete/post-hole-calculator`
 
@@ -196,9 +178,6 @@ Limitations:
 
 Sources: `quikrete-fast-setting`, `nist-sp811`, `aci-practice`
 
-<!-- BUILDCALCS_LINKS:START hole -->
-- [50 lb fast-setting bag yields 0.375 cu ft](https://buildcalcs.io/concrete/post-hole-calculator) — 8 in hole / 4×4 in post / 24 in deep = 0.48 cu ft
-<!-- BUILDCALCS_LINKS:END hole -->
 
 ## Sonotube calculator — `/concrete/sonotube-calculator`
 
@@ -222,9 +201,6 @@ Limitations:
 
 Sources: `nist-sp811`, `quikrete-concrete-mix`, `aci-practice`
 
-<!-- BUILDCALCS_LINKS:START tube -->
-- [round pier concrete quantity per foot](https://buildcalcs.io/concrete/sonotube-calculator) — 6 bags of 80 lb per 12 in × 4 ft pier
-<!-- BUILDCALCS_LINKS:END tube -->
 
 ## Rebar calculator — `/concrete/rebar-calculator`
 
@@ -251,6 +227,3 @@ Limitations:
 
 Sources: `crsi-rebar`, `aci-practice`, `nist-sp811`
 
-<!-- BUILDCALCS_LINKS:START rebar -->
-- [rebar weight by bar size](https://buildcalcs.io/concrete/rebar-calculator) — #4 @12 in two-way 10×10 ft = 22 bars / 242 ft / 161.66 lb
-<!-- BUILDCALCS_LINKS:END rebar -->

@@ -1,10 +1,9 @@
 /**
- * Checks the off-site link matrix: coverage of every buildcalcs.io page,
- * unique varied anchors, clean absolute URLs, idempotent generation and a
- * pinned set of numeric facts that must stay in sync with the site copy.
+ * Checks the internal document navigation and pins the numeric facts copied
+ * from the buildcalcs.io site copy so this repository cannot drift silently.
  */
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, it } from "node:test";
@@ -12,27 +11,6 @@ import { buildBlocks } from "../scripts/generate-links.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const config = JSON.parse(readFileSync(resolve(ROOT, "links.json"), "utf8"));
-
-const TARGET_PATHS = [
-  "/",
-  "/about",
-  "/calculation-methodology",
-  "/concrete",
-  "/concrete/block-calculator",
-  "/concrete/yard-calculator",
-  "/concrete/slab-calculator",
-  "/concrete/quikrete-calculator",
-  "/cost/concrete-slab-cost-calculator",
-  "/concrete/post-hole-calculator",
-  "/concrete/sonotube-calculator",
-  "/concrete/rebar-calculator",
-  "/concrete/how-much-concrete-do-i-need",
-  "/concrete/how-much-is-a-yard-of-concrete",
-  "/concrete/how-long-does-concrete-take-to-cure",
-  "/concrete/mix-ratio",
-];
-
-const BANNED = ["click here", "read more", "learn more", "this link", "more info"];
 
 const readFile = (file) => readFileSync(resolve(ROOT, file), "utf8");
 
@@ -51,64 +29,15 @@ function extractGeneratedLines(content, slot) {
     .filter((line) => line.startsWith("- ["));
 }
 
-describe("Off-site link matrix", () => {
-  it("covers all 16 site pages, with no unknown targets", () => {
-    const linked = new Set(config.links.map((link) => link.targetPath));
-    for (const path of TARGET_PATHS) {
-      assert.ok(linked.has(path), `no off-site link points to ${path}`);
-    }
-    assert.strictEqual(linked.size, TARGET_PATHS.length);
+describe("Internal document navigation", () => {
+  it("every target exists inside this repository", () => {
     for (const link of config.links) {
-      assert.ok(config.targets[link.targetPath], `unknown target ${link.targetPath}`);
-    }
-  });
-
-  it("uses a different anchor for every link to the same target page", () => {
-    const blocks = buildBlocks(config);
-    for (const slots of blocks.values()) {
-      for (const entries of slots.values()) {
-        assert.ok(entries.length <= 3, "at most three links per off-site block");
-      }
-    }
-    const byTarget = new Map();
-    for (const slots of blocks.values()) {
-      for (const entries of slots.values()) {
-        for (const entry of entries) {
-          const path = new URL(entry.url).pathname;
-          const list = byTarget.get(path) ?? [];
-          assert.ok(
-            !list.includes(entry.anchor),
-            `duplicate anchor for ${path}: ${entry.anchor}`,
-          );
-          list.push(entry.anchor);
-          byTarget.set(path, list);
-        }
-      }
-    }
-  });
-
-  it("uses descriptive anchors only, with absolute clean URLs", () => {
-    const blocks = buildBlocks(config);
-    for (const slots of blocks.values()) {
-      for (const entries of slots.values()) {
-        for (const entry of entries) {
-          const lower = entry.anchor.toLowerCase();
-          for (const banned of BANNED) {
-            assert.ok(!lower.includes(banned), `banned anchor: ${entry.anchor}`);
-          }
-          assert.ok(!/^https?:\/\//i.test(entry.anchor), "bare URL as anchor");
-          assert.ok(entry.anchor.length > 8, "anchor is too generic");
-          const url = new URL(entry.url);
-          assert.strictEqual(url.protocol, "https:");
-          assert.strictEqual(url.hostname, "buildcalcs.io");
-          assert.strictEqual(url.search, "");
-          assert.strictEqual(url.hash, "");
-          if (url.pathname !== "/") {
-            assert.ok(!url.pathname.endsWith("/"), "trailing slash in target path");
-          }
-          assert.ok(entry.snippet.length > 10, "numeric snippet is missing");
-        }
-      }
+      assert.ok(
+        existsSync(resolve(ROOT, link.target)),
+        `${link.file}: target ${link.target} does not exist`,
+      );
+      assert.ok(link.anchor.length > 5, `anchor too short: ${link.anchor}`);
+      assert.ok(!link.target.startsWith("http"), "navigation target must be local");
     }
   });
 
@@ -118,7 +47,7 @@ describe("Off-site link matrix", () => {
       const content = readFile(file);
       for (const [slot, entries] of slots) {
         const expected = entries.map(
-          (e) => `- [${e.anchor}](${e.url}) — ${e.snippet}`,
+          (entry) => `- [${entry.anchor}](${entry.target}) — ${entry.note}`,
         );
         assert.deepStrictEqual(
           extractGeneratedLines(content, slot),
@@ -129,17 +58,15 @@ describe("Off-site link matrix", () => {
     }
   });
 
-  it("every off-site page names the brand and domain in plain text", () => {
-    const pages = new Set(config.links.map((link) => link.offsitePage));
-    for (const page of pages) {
-      const content = readFile(page);
-      assert.ok(
-        content.toLowerCase().includes("buildcalcs.io"),
-        `${page} never spells out the domain`,
-      );
+  it("generated blocks contain no outbound link scheme", () => {
+    const blocks = buildBlocks(config);
+    for (const slots of blocks.values()) {
+      for (const entries of slots.values()) {
+        for (const entry of entries) {
+          assert.ok(!entry.target.includes("://"), `outbound link in navigation: ${entry.target}`);
+        }
+      }
     }
-    const readme = readFile("README.md").toLowerCase();
-    assert.ok(readme.includes("buildcalcs"), "README has no brand name");
   });
 });
 

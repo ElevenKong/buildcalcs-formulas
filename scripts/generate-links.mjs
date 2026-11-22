@@ -1,10 +1,9 @@
 /**
- * Regenerate the link blocks that point from this repository back to buildcalcs.io.
+ * Regenerate the internal document navigation block in README.md.
  *
- * links.json is the single source of truth. Anchor text is chosen deterministically
- * from a DJB2 hash of (offsitePage | slot | targetPath); if that anchor is already
- * used for the same target, the next variant is tried. Re-running never changes the
- * output and never touches content outside the marked blocks.
+ * links.json is the single source of truth. Anchors are fixed, descriptive
+ * labels for repository files — this script does not generate outbound links
+ * or rotate anchor text. Re-running only rewrites the marked block.
  */
 import { readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
@@ -12,54 +11,24 @@ import { fileURLToPath } from "node:url";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 
-const djb2 = (s) => {
-  let h = 5381;
-  for (let i = 0; i < s.length; i += 1) {
-    h = ((h << 5) + h + s.charCodeAt(i)) | 0;
-  }
-  return Math.abs(h);
-};
-
-/** Build { file → { slot → generated block lines } } from links.json. */
+/** Build { file → { slot → entries } } from links.json. */
 export function buildBlocks(config) {
-  const used = new Map();
   const byFile = new Map();
-
   for (const link of config.links) {
-    const target = config.targets[link.targetPath];
-    if (!target) {
-      throw new Error(`links.json: unknown targetPath ${link.targetPath}`);
-    }
-    const key = `${link.offsitePage}|${link.slot}|${link.targetPath}`;
-    let anchor;
-    const taken = used.get(link.targetPath) ?? new Set();
-    for (let i = 0; i < target.anchors.length; i += 1) {
-      const candidate = target.anchors[(djb2(key) + i) % target.anchors.length];
-      if (!taken.has(candidate)) {
-        anchor = candidate;
-        break;
-      }
-    }
-    if (!anchor) {
-      throw new Error(`links.json: no unused anchor left for ${link.targetPath}`);
-    }
-    taken.add(anchor);
-    used.set(link.targetPath, taken);
-
-    const file = byFile.get(link.offsitePage) ?? new Map();
-    const lines = file.get(link.slot) ?? [];
-    lines.push({
-      anchor,
-      url: `${config.siteUrl}${link.targetPath}`,
-      snippet: target.numberSnippet,
+    const file = byFile.get(link.file) ?? new Map();
+    const entries = file.get(link.slot) ?? [];
+    entries.push({
+      anchor: link.anchor,
+      target: link.target,
+      note: link.note,
     });
-    file.set(link.slot, lines);
-    byFile.set(link.offsitePage, file);
+    file.set(link.slot, entries);
+    byFile.set(link.file, file);
   }
   return byFile;
 }
 
-/** Replace the marked block for one slot, preserving the prefix on each line. */
+/** Replace one marked block, preserving the prefix on each line. */
 function replaceSlot(content, slot, entries) {
   const slotSuffix = slot === "default" ? "" : ` ${slot}`;
   const startToken = `<!-- BUILDCALCS_LINKS:START${slotSuffix} -->`;
@@ -73,7 +42,7 @@ function replaceSlot(content, slot, entries) {
   const prefix = content.slice(lineStart, startIdx);
   const endLineStart = content.lastIndexOf("\n", endIdx) + 1;
   const lines = entries.map(
-    (e) => `${prefix}- [${e.anchor}](${e.url}) — ${e.snippet}`,
+    (entry) => `${prefix}- [${entry.anchor}](${entry.target}) — ${entry.note}`,
   );
   return (
     content.slice(0, startIdx + startToken.length) +
@@ -106,5 +75,5 @@ if (process.argv[1] && resolve(process.argv[1]) === resolve(fileURLToPath(import
       total += entries.length;
     }
   }
-  process.stdout.write(`Generated ${total} links across ${blocks.size} files.\n`);
+  process.stdout.write(`Generated ${total} internal links across ${blocks.size} files.\n`);
 }
