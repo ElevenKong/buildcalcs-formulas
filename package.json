@@ -1,0 +1,13 @@
+{
+  "name": "buildcalcs-formulas",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Public formulas, tests and data behind the buildcalcs.io calculators",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test",
+    "links": "node scripts/generate-links.mjs",
+    "cli": "node cli.mjs"
+  }
+}

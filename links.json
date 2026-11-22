@@ -1,0 +1,160 @@
+{
+  "siteUrl": "https://buildcalcs.io",
+  "targets": {
+    "/": {
+      "anchors": [
+        "BuildCalcs concrete calculator",
+        "free calculator with every formula shown",
+        "cubic yards and bag counts in one place"
+      ],
+      "numberSnippet": "10 × 10 ft slab at 4 in = 1.23 yd³ / 56 bags of 80 lb"
+    },
+    "/about": {
+      "anchors": [
+        "who builds BuildCalcs",
+        "the estimating-software origin story",
+        "developer, not a contractor — quantity estimates only"
+      ],
+      "numberSnippet": "independent developer who built estimating software for US residential concrete and masonry contractors"
+    },
+    "/calculation-methodology": {
+      "anchors": [
+        "how BuildCalcs verifies its formulas",
+        "source registry and correction log",
+        "shared standards behind the published numbers"
+      ],
+      "numberSnippet": "40 hand-worked test cases; all sources checked 2026-11-22"
+    },
+    "/concrete": {
+      "anchors": [
+        "all concrete calculators by pour type",
+        "the concrete calculator directory",
+        "slabs, footings, blocks, yards and rebar tools"
+      ],
+      "numberSnippet": "nine calculator branches, one shared arithmetic kernel"
+    },
+    "/concrete/block-calculator": {
+      "anchors": [
+        "1.125 blocks per square foot",
+        "cinder block and mortar bag quantities",
+        "why nominal block size matters"
+      ],
+      "numberSnippet": "80 sq ft wall = 90 blocks, 3 bags of 80 lb mortar"
+    },
+    "/concrete/yard-calculator": {
+      "anchors": [
+        "convert feet and inches to cubic yards",
+        "the ÷27 step in concrete yardage",
+        "10 × 10 ft slab at 4 in = 1.23 yd³"
+      ],
+      "numberSnippet": "33.33 cu ft ÷ 27 = 1.23 yd³; 56 bags of 80 lb"
+    },
+    "/concrete/slab-calculator": {
+      "anchors": [
+        "slab thickness by use",
+        "cubic yards for a 4 in slab",
+        "split an L-shape into rectangles"
+      ],
+      "numberSnippet": "81 sq ft covered by one cubic yard at 4 in"
+    },
+    "/concrete/quikrete-calculator": {
+      "anchors": [
+        "80 lb Quikrete bag yields 0.60 cu ft",
+        "how many bags per cubic yard",
+        "bag counts by slab size"
+      ],
+      "numberSnippet": "40/50/60/80/90 lb → 0.30/0.375/0.45/0.60/0.675 cu ft"
+    },
+    "/cost/concrete-slab-cost-calculator": {
+      "anchors": [
+        "material, delivery and labor for a slab",
+        "local concrete price per yard",
+        "installed cost per square foot"
+      ],
+      "numberSnippet": "$165/yd³ material, $5/ft² labor, $1.5/ft² base — illustrative only"
+    },
+    "/concrete/post-hole-calculator": {
+      "anchors": [
+        "50 lb fast-setting bag yields 0.375 cu ft",
+        "post-hole volume minus the post cross-section",
+        "concrete for a fence post hole"
+      ],
+      "numberSnippet": "8 in hole / 4×4 in post / 24 in deep = 0.48 cu ft"
+    },
+    "/concrete/sonotube-calculator": {
+      "anchors": [
+        "Sonotube pier volume πr²",
+        "round pier concrete quantity per foot",
+        "12 in × 4 ft pier = 3.14 cu ft"
+      ],
+      "numberSnippet": "6 bags of 80 lb per 12 in × 4 ft pier"
+    },
+    "/concrete/rebar-calculator": {
+      "anchors": [
+        "#4 bar = 0.668 lb/ft",
+        "rebar grid spacing and bar count",
+        "rebar weight by bar size"
+      ],
+      "numberSnippet": "#4 @12 in two-way 10×10 ft = 22 bars / 242 ft / 161.66 lb"
+    },
+    "/concrete/how-much-concrete-do-i-need": {
+      "anchors": [
+        "how much concrete do I need",
+        "cubic feet to cubic yards and bags",
+        "10 × 10 slab needs 1.23 yards"
+      ],
+      "numberSnippet": "33.33 cu ft / 1.23 yd³ / 56 bags of 80 lb before waste"
+    },
+    "/concrete/how-much-is-a-yard-of-concrete": {
+      "anchors": [
+        "what a cubic yard of concrete covers",
+        "why two yard quotes differ",
+        "81 sq ft per yard at 4 in"
+      ],
+      "numberSnippet": "27 cu ft, about 4,000 lb; 81 sq ft at 4 in"
+    },
+    "/concrete/how-long-does-concrete-take-to-cure": {
+      "anchors": [
+        "concrete cure time by day",
+        "walk on it in 24 to 48 hours",
+        "28 days to design strength"
+      ],
+      "numberSnippet": "initial set 2–4 h, ~70% at 7 days, full strength at 28 days"
+    },
+    "/concrete/mix-ratio": {
+      "anchors": [
+        "1:2:3 concrete mix ratio",
+        "how much water per 80 lb bag",
+        "mix ratios by use"
+      ],
+      "numberSnippet": "1:2:3 ≈ 3,500–4,000 PSI; 80 lb bag ≈ 3 quarts water"
+    }
+  },
+  "links": [
+    { "offsitePage": "README.md", "slot": "default", "targetPath": "/" },
+    { "offsitePage": "README.md", "slot": "default", "targetPath": "/about" },
+    { "offsitePage": "README.md", "slot": "default", "targetPath": "/calculation-methodology" },
+    { "offsitePage": "calculators.md", "slot": "home", "targetPath": "/" },
+    { "offsitePage": "calculators.md", "slot": "block", "targetPath": "/concrete/block-calculator" },
+    { "offsitePage": "calculators.md", "slot": "yard", "targetPath": "/concrete/yard-calculator" },
+    { "offsitePage": "calculators.md", "slot": "slab", "targetPath": "/concrete/slab-calculator" },
+    { "offsitePage": "calculators.md", "slot": "quikrete", "targetPath": "/concrete/quikrete-calculator" },
+    { "offsitePage": "calculators.md", "slot": "cost", "targetPath": "/cost/concrete-slab-cost-calculator" },
+    { "offsitePage": "calculators.md", "slot": "hole", "targetPath": "/concrete/post-hole-calculator" },
+    { "offsitePage": "calculators.md", "slot": "tube", "targetPath": "/concrete/sonotube-calculator" },
+    { "offsitePage": "calculators.md", "slot": "rebar", "targetPath": "/concrete/rebar-calculator" },
+    { "offsitePage": "bag-yields.md", "slot": "default", "targetPath": "/concrete/quikrete-calculator" },
+    { "offsitePage": "bag-yields.md", "slot": "default", "targetPath": "/concrete/yard-calculator" },
+    { "offsitePage": "guides.md", "slot": "guide-need", "targetPath": "/concrete/how-much-concrete-do-i-need" },
+    { "offsitePage": "guides.md", "slot": "guide-yard", "targetPath": "/concrete/how-much-is-a-yard-of-concrete" },
+    { "offsitePage": "guides.md", "slot": "guide-cure", "targetPath": "/concrete/how-long-does-concrete-take-to-cure" },
+    { "offsitePage": "guides.md", "slot": "guide-mix", "targetPath": "/concrete/mix-ratio" },
+    { "offsitePage": "SOURCES.md", "slot": "default", "targetPath": "/calculation-methodology" },
+    { "offsitePage": "SOURCES.md", "slot": "default", "targetPath": "/concrete/how-much-is-a-yard-of-concrete" },
+    { "offsitePage": "cli.mjs", "slot": "cli", "targetPath": "/concrete" },
+    { "offsitePage": "gists/bag-yield-table.md", "slot": "default", "targetPath": "/concrete/quikrete-calculator" },
+    { "offsitePage": "gists/cubic-yard-chart.md", "slot": "default", "targetPath": "/concrete/yard-calculator" },
+    { "offsitePage": "gists/rebar-weight-table.md", "slot": "default", "targetPath": "/concrete/rebar-calculator" },
+    { "offsitePage": "gists/block-count-reference.md", "slot": "default", "targetPath": "/concrete/block-calculator" }
+  ]
+}
