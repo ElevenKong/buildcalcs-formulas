@@ -2,6 +2,15 @@
 
 All notable changes to the public reference implementation behind the [calculators on buildcalcs.io](https://buildcalcs.io/) are recorded here.
 
+## Unreleased
+
+- Bag-yield source now points at the Quikrete Concrete Mix No. 1101 data sheet, which prints a yield for each of the 40/50/60/80/90 lb bags; the product-line page it replaced listed sizes but no yields.
+- Documented that the 90 lb bag is a regional size and that fast-setting concrete is a separate product with its own published 50 lb yield — bag weight alone is not a universal yield.
+- Rebar unit weights are described as nominal values per bar size, with the grade setting yield strength rather than weight.
+- Rebar notes now separate the lap-and-cut allowance from a splice schedule: a 20 ft run needs no splice, the stock-stick figure is total length ÷ 20 rather than a nesting plan, and both directions of that error are spelled out.
+- Counts (bars, sticks, blocks, bags per course) round up with a floating-point tolerance, so an exact division such as 1.2 m at 300 mm centres no longer adds a bar.
+- Source registry naming: the industry association at cement.org is now the American Cement Association (renamed from the Portland Cement Association in May 2025).
+
 ## v0.1.0 — 2026-11-23
 
 First tagged release.

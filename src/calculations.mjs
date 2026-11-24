@@ -63,9 +63,17 @@ export function calculateEstimate(ctx) {
   const { home, block, cost, steel, tube, holes, mix, isHole, round } = flags;
   const v = (key) => values[key] ?? 0;
 
-  // Round bag counts up; the tolerance prevents 3/0.3 = 9.999… from adding a bag.
-  const bag = (volume, yieldFt) => Math.ceil(volume / yieldFt - 1e-10);
-  const bagM3 = (volumeM3, yieldM3) => Math.ceil(volumeM3 / yieldM3 - 1e-10);
+  /**
+   * Round a count up with a floating-point tolerance.
+   * A bare Math.ceil adds a unit whenever the exact result is an integer but the
+   * binary arithmetic lands just above it: 1.2 m at 300 mm gives
+   * 4.000000000000001 spaces, which would become 5 and add a bar. The tolerance
+   * scales with magnitude to cover wider ulps at large counts.
+   */
+  const ceilCount = (x) => Math.ceil(x - Math.max(1e-9, Math.abs(x) * 1e-12));
+
+  const bag = (volume, yieldFt) => ceilCount(volume / yieldFt);
+  const bagM3 = (volumeM3, yieldM3) => ceilCount(volumeM3 / yieldM3);
 
   const result = [];
   const add = (key, value, unit) =>
@@ -133,14 +141,14 @@ export function calculateEstimate(ctx) {
      *   sticks = ceil(total length / 20)
      *   weight = total length × unit weight (lb/ft)
      */
-    const runs = (span) => Math.ceil((span * 12) / v("spacing")) + 1;
+    const runs = (span) => ceilCount((span * 12) / v("spacing")) + 1;
     // Bars running along the length are spaced across the width.
     const along = runs(v("width"));
     // The perpendicular direction is zero when only one way is specified.
     const across = direction === "Both ways" ? runs(v("length")) : 0;
     const length =
       (along * v("length") + across * v("width")) * (1 + v("lap") / 100);
-    const sticks = Math.ceil(length / STICK_LENGTH_FT);
+    const sticks = ceilCount(length / STICK_LENGTH_FT);
     add("Total bar length", length, "linear ft");
     add("Bars to cut", along + across, "pieces");
     add(`#${bar} stock (20 ft)`, sticks, "sticks");
@@ -156,12 +164,12 @@ export function calculateEstimate(ctx) {
      *   mortar bags = ceil(order / 32)
      *   blocks per course = ceil(length(in) / 16)
      */
-    const net = Math.ceil(v("length") * v("height") * 1.125);
-    const order = Math.ceil(net * factor);
+    const net = ceilCount(v("length") * v("height") * 1.125);
+    const order = ceilCount(net * factor);
     add("Blocks with waste", order, "blocks");
     add("Net block count", net, "blocks");
-    add("Mortar (80 lb)", Math.ceil(order / BLOCKS_PER_MORTAR_BAG), "bags");
-    add("Blocks per course", Math.ceil((v("length") * 12) / 16), "blocks");
+    add("Mortar (80 lb)", ceilCount(order / BLOCKS_PER_MORTAR_BAG), "bags");
+    add("Blocks per course", ceilCount((v("length") * 12) / 16), "blocks");
   } else if (cost) {
     /**
      * Installed cost:

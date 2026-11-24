@@ -257,6 +257,17 @@ describe("Masonry block branch", () => {
     assert.strictEqual(BLOCKS_PER_MORTAR_BAG, 32);
   });
 
+  it("metric 4.064 m wall: 10 blocks per course, no extra block from float drift", () => {
+    const { rows } = calculateEstimate(
+      ctx({
+        unitSystem: "metric",
+        flags: { ...noFlags, block: true },
+        values: { length: 4.064 / 0.3048, height: 2.4 / 0.3048, waste: 0 },
+      }),
+    );
+    assert.strictEqual(valueOf(rows, "Blocks per course"), "10 blocks");
+  });
+
   it("5% waste: net 90 → order 95 blocks, mortar still 3 bags", () => {
     const { rows } = calculateEstimate(blockCtx(5));
     assert.strictEqual(valueOf(rows, "Blocks with waste"), "95 blocks");
@@ -362,6 +373,31 @@ describe("Rebar branch", () => {
     assert.strictEqual(valueOf(rows, "Bars to cut"), "11 pieces");
     assert.strictEqual(valueOf(rows, "Total bar length"), "121 linear ft");
     assert.strictEqual(valueOf(rows, "#4 stock (20 ft)"), "7 sticks");
+  });
+
+  it("metric 1.2 m at 300 mm centres: 4 exact spaces, 5 bars — no extra bar from float drift", () => {
+    const { rows } = calculateEstimate(
+      steelCtx({
+        unitSystem: "metric",
+        values: { length: 1.2 / 0.3048, width: 1.2 / 0.3048, spacing: 300 / 25.4, lap: 0 },
+      }),
+    );
+    assert.strictEqual(valueOf(rows, "Bars to cut"), "10 pieces");
+    assert.strictEqual(valueOf(rows, "Total bar length"), "39.37 linear ft");
+    assert.strictEqual(valueOf(rows, "#4 stock (20 ft)"), "2 sticks");
+  });
+
+  it("metric 3 m × 3 m at 300 mm centres converts to the same result as feet and inches", () => {
+    const { rows } = calculateEstimate(
+      steelCtx({
+        unitSystem: "metric",
+        values: { length: 3 / 0.3048, width: 3 / 0.3048, spacing: 300 / 25.4, lap: 10 },
+      }),
+    );
+    assert.strictEqual(valueOf(rows, "Bars to cut"), "22 pieces");
+    assert.strictEqual(valueOf(rows, "Total bar length"), "238.19 linear ft");
+    assert.strictEqual(valueOf(rows, "#4 stock (20 ft)"), "12 sticks");
+    assert.strictEqual(valueOf(rows, "Total weight"), "159.11 lb");
   });
 
   it("different bar numbers use different unit weights (#3 vs #11)", () => {

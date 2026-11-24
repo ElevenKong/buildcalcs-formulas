@@ -2,7 +2,7 @@
 
 Every calculator in the [buildcalcs.io calculator set](https://buildcalcs.io/concrete) uses one of the nine branches below. The formulas are written here as plain text so they can be read and checked without rendering software. The live pages on buildcalcs.io are the source of truth for displayed results; this file is the reference copy.
 
-All nine entries were first published `2026-11-20`, last updated `2026-11-22`, and have no named reviewer (`reviewedBy` is null). These are quantity estimates, not structural design.
+All nine entries were first published `2026-11-20`, last updated `2026-11-24`, and have no named reviewer (`reviewedBy` is null). These are quantity estimates, not structural design.
 
 Shared unit facts used by every branch:
 
@@ -26,6 +26,8 @@ Assumptions:
 - 1 cubic yard = 27 cubic feet; 1 cubic foot = 0.028316846592 cubic metres (NIST SP 811).
 - Rectangular pours include the entered waste allowance, expressed as 1 + waste%. Circular pours return net geometric volume.
 - Bag counts are rounded up once after the full pour is totaled. Yields for 40/50/60/80/90 lb bags are 0.30/0.375/0.45/0.60/0.675 cu ft; UK/Australia 25 kg and 20 kg bags are counted at 0.0117 m³ and 0.00936 m³ each (roughly 85 and 107 bags per cubic metre).
+- Each lb yield is the figure printed on the Quikrete Concrete Mix (No. 1101) data sheet for that bag size — a published value per product, not a weight-to-volume rule applied to any bag. The 90 lb bag is a regional size, and another brand prints its own yield.
+- The bag rows printed on this page are 60 lb and 80 lb (plus 20 kg and 25 kg in the metric form). Counts for the 40, 50 and 90 lb sizes are printed on the Quikrete calculator page from the same yields.
 - Irregular shapes must be split into rectangles or circles and calculated separately, then added.
 
 Limitations:
@@ -116,7 +118,7 @@ Formulas:
 
 Assumptions:
 
-- Yields assume the recommended water content. Concrete Mix is treated as the general-purpose ~4,000 psi product.
+- Yields assume the recommended water content. Concrete Mix is treated as the general-purpose ~4,000 psi product; the five lb values are the yields printed on its No. 1101 data sheet, where the 90 lb bag is marked as a regional size.
 - Sakrete yields are assumed equivalent to Quikrete at the same bag weight.
 - Bag counts are rounded up once on the total pour, so a split pour does not buy an extra partial bag per section.
 - Volume is in cubic feet; divide cubic feet by 27 first if you are starting from a cubic-yard figure.
@@ -215,13 +217,15 @@ Unit weights (lb/ft): #3 0.376, #4 0.668, #5 1.043, #6 1.502, #7 2.044, #8 2.67,
 Assumptions:
 
 - Spacing is centre-to-centre in inches; run lengths are in feet and converted by ×12 before dividing.
-- The +1 bar closes the last space of the grid. One-way placement sets the other direction's count to zero.
-- The lap percentage is spread across total length to cover splices and cutting waste; unit weights are the standard lb/ft table values.
+- The +1 bar closes the last space of the grid. One-way placement sets the other direction's count to zero. A spacing wider than the run still returns two bars, one at each edge.
+- The lap percentage is a blanket allowance on total length, not a splice schedule: a splice is only physically required where a run exceeds the stock length, and on shorter runs the same percentage covers the offcut instead. The percentage is capped at 100 and may be set to 0.
+- Unit weights are the nominal lb/ft value for each bar size; the grade sets yield strength, not weight, so one size weighs the same in Grade 40, 60 or 80.
 - Stock bars are assumed to be 20 ft; longer 30/40/60 ft lengths exist but are less commonly stocked.
 
 Limitations:
 
 - The result is a quantity take-off, not a cut list: individual bar lengths and splice locations must be worked out before ordering.
+- Stock sticks are total length ÷ 20 with no offcut nesting, so the count is a floor rather than a cut plan when the run does not divide into stock lengths — a 12 ft bar leaves an 8 ft offcut and one stick per bar. Bar cover, hooks and bent bars are not modelled.
 - Spacing tables cover flatwork on grade. Suspended slabs, retaining walls and structural members need an engineered design.
 - Rebar price is an illustrative national range; scrap-steel movement, cutting charges and small-order premiums are not modelled.
 

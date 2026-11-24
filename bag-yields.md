@@ -12,7 +12,7 @@ Reference data used by the [concrete quantity calculators](https://buildcalcs.io
 | 80 lb | 0.60 cu ft | 45 |
 | 90 lb | 0.675 cu ft | 40 |
 
-Yields assume the recommended water content. Concrete Mix is treated as the general-purpose ~4,000 psi product. Fast-Setting concrete is counted at 0.375 cu ft for a 50 lb bag and 0.60 cu ft for an 80 lb bag.
+Every lb figure in that table is the yield printed on the Quikrete Concrete Mix (No. 1101) data sheet for that bag size, at the recommended water content — not a weight-to-volume rule applied to any bag. The 90 lb bag is a regional size. Fast-Setting concrete is a different product, counted at its own published 0.375 cu ft for a 50 lb bag and 0.60 cu ft for an 80 lb bag.
 
 The count is `ceil(total cubic feet / yield)`, rounded up once after the whole pour is totaled — not once per section of an L-shaped slab.
 
@@ -39,7 +39,7 @@ Verify these numbers with `node cli.mjs`.
 
 ## Sources
 
-- Quikrete Concrete Mix — published bag yields: https://www.quikrete.com/productlines/concretemix.asp
+- Quikrete Concrete Mix (No. 1101) — data sheet, yield printed for each bag size: https://www.quikrete.com/pdfs/data_sheet-concrete%20mix%201101.pdf
 - Quikrete Fast-Setting Concrete — data sheet 1004-50 (50 lb bag ≈ 0.375 cu ft): https://www.quikrete.com/PDFs/DATA_SHEET-Fast%20Setting%20Concrete%20Mix%201004-50.pdf
 - NIST SP 811 — unit conversions: https://www.nist.gov/pml/special-publication-811
 
