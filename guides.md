@@ -5,14 +5,14 @@ The worked numbers published in the four practical guides on **buildcalcs.io**. 
 ## How Much Concrete Do I Need? — `/concrete/how-much-concrete-do-i-need`
 
 - Multiply length × width × thickness — all three in feet — to get cubic feet, then divide by 27 to get cubic yards.
-- A 10 × 10 ft slab at 4 in thick is 10 × 10 × 0.333 = 33.33 cubic feet, which is 33.33 ÷ 27 = 1.23 cubic yards.
+- A 10 × 10 ft slab at 4 in thick is 10 × 10 × 0.333 = 33.33 cubic feet, which is 33.33 ÷ 27 = 1.23 cubic yards net. The slab calculator starts with a 5% waste allowance, so its default result for the same slab is about 1.3 cubic yards.
 - At 80 lb per bag with a 0.6 cubic foot yield, that is 56 bags before any waste allowance (59 at 5%).
 - Thickness conversion: 3 in → 0.25 ft; 4 in → 0.333; 5 in → 0.417; 6 in → 0.5; 8 in → 0.667; 12 in → 1.0.
 - Bag yields: 40 lb 0.30 cu ft (90 bags/yd³); 50 lb 0.375 (72); 60 lb 0.45 (60); 80 lb 0.60 (45); 90 lb 0.675 (40).
-- Common slabs at 4 in: 4 × 8 ft → 10.7 cu ft / 0.40 yd³ / 18 bags; 10 × 10 ft → 33.3 / 1.23 / 56; 12 × 12 ft → 48.0 / 1.78 / 80; 20 × 20 ft → 133.3 / 4.94 / 222; 24 × 24 ft → 192.0 / 7.11 / 320.
+- Common slabs at 4 in (net, before waste): 4 × 8 ft → 10.7 cu ft / 0.40 yd³ / 18 bags; 10 × 10 ft → 33.3 / 1.23 / 56; 12 × 12 ft → 48.0 / 1.78 / 80; 20 × 20 ft → 133.3 / 4.94 / 222; 24 × 24 ft → 192.0 / 7.11 / 320.
 - A 20 ft footing at 24 in wide and 12 in deep is 20 × 2 × 1 = 40 cubic feet, or 1.48 cubic yards.
 - A 10 in diameter hole, 30 in deep, around a 4 × 4 post takes about 1.1 cubic feet, which is 2 bags of 80 lb.
-- On a 10 × 10 slab at 4 in that is 1.23 cubic yards net, so order 1.29 — 1.5 yards at most plants — or 59 bags of 80 lb instead of 56.
+- On a 10 × 10 slab at 4 in that is 1.23 cubic yards net, so order about 1.3 — 1.5 yards at most plants — or 59 bags of 80 lb instead of 56.
 - One cubic yard of concrete weighs roughly 4,000 lb.
 - 3 m × 3 m × 0.1 m = 0.9 m³. One cubic metre is about 1.31 cubic yards.
 - Metric bagged concrete is sold as 20 kg or 25 kg; counted at 0.00936 m³ and 0.0117 m³ per bag (about 107 and 85 bags per cubic metre).

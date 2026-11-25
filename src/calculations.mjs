@@ -81,26 +81,29 @@ export function calculateEstimate(ctx) {
   const money = (key, value) => result.push([key, `$${display(value)}`]);
 
   /**
-   * Volume rows: metric leads with m³ and keeps yd³ alongside; imperial keeps
-   * the original cubic-yards + metric order. Net volume is listed separately
-   * when a waste allowance was applied.
+   * Volume rows use one unit per system; the unit is carried by the value,
+   * never repeated in the label. US orders in yd³ and shows bag-basis ft³;
+   * metric uses m³ throughout.
    */
+  const addVol = (label, cubicFeet, kind) => {
+    if (unitSystem === "metric") {
+      add(label, cubicFeet * CUBIC_FT_TO_M3, "m³");
+    } else if (kind === "order") {
+      add(label, cubicFeet / CU_FT_PER_YD, "yd³");
+    } else {
+      add(label, cubicFeet, "ft³");
+    }
+  };
+
+  /** Order-quantity row; metric also lists net volume when waste was applied. */
   const addVolume = (
     cubicFeet,
-    ydLabel = "Concrete volume",
+    label = "Concrete volume",
     netCubicFeet = cubicFeet,
   ) => {
-    const hasWaste = netCubicFeet !== cubicFeet;
-    if (unitSystem === "metric") {
-      add(`${ydLabel} (m³)`, cubicFeet * CUBIC_FT_TO_M3, "cubic metres");
-      add(`${ydLabel} (yd³)`, cubicFeet / CU_FT_PER_YD, "cubic yards");
-      if (hasWaste) {
-        add("Net volume (m³)", netCubicFeet * CUBIC_FT_TO_M3, "cubic metres");
-        add("Net volume (yd³)", netCubicFeet / CU_FT_PER_YD, "cubic yards");
-      }
-    } else {
-      add(ydLabel, cubicFeet / CU_FT_PER_YD, "cubic yards");
-      add("Metric volume (m³)", cubicFeet * CUBIC_FT_TO_M3, "cubic metres");
+    addVol(label, cubicFeet, "order");
+    if (unitSystem === "metric" && netCubicFeet !== cubicFeet) {
+      addVol("Net volume", netCubicFeet, "order");
     }
   };
 
@@ -223,16 +226,18 @@ export function calculateEstimate(ctx) {
       const per = gross - displaced;
       volume = per * v("count");
       if (isHole) {
-        add("Hole volume", gross, "cubic feet");
-        add("Minus post", displaced, "cubic feet");
-        add("Concrete per hole", per, "cubic feet");
+        addVol("Hole volume", gross, "detail");
+        addVol("Minus post", displaced, "detail");
+        addVol("Concrete per hole", per, "detail");
         // Bag counts are rounded up on the total, not once per hole.
         addBags(per, [
           ["50 lb bags per hole", 0.375],
           ["80 lb bags per hole", 0.6],
         ]);
-        add("Total concrete", volume, "cubic feet");
         addVolume(volume, "Total concrete");
+        if (unitSystem === "us") {
+          addVol("Volume for bags", volume, "detail");
+        }
         addBags(volume, [
           ["Total 50 lb bags", 0.375],
           ["Total 80 lb bags", 0.6],
@@ -246,18 +251,11 @@ export function calculateEstimate(ctx) {
           volume += Math.PI * (pier.diameter / 24) ** 2 * pier.depth * pier.count;
         }
         add("Cross-section", area, "square feet");
-        add("Volume per pier", per, "cubic feet");
-        if (unitSystem === "metric") {
-          add("Volume per pier (m³)", per * CUBIC_FT_TO_M3, "cubic metres");
-          add("Volume per pier (yd³)", per / CU_FT_PER_YD, "cubic yards");
-        } else {
-          add("Volume per pier (yd³)", per / CU_FT_PER_YD, "cubic yards");
-        }
+        addVol("Volume per pier", per, "detail");
         addBags(per, [
           ["80 lb bags per pier", 0.6],
           ["60 lb bags per pier", 0.45],
         ]);
-        add("Total concrete", volume, "cubic feet");
         addVolume(volume, "Total concrete");
         if (priced) money("Estimated cost (80 lb)", bag(volume, 0.6) * v("price"));
       }
@@ -265,7 +263,9 @@ export function calculateEstimate(ctx) {
     // Hole results already include a total; slab/piers get the standard rows.
     if (!isHole) {
       addVolume(volume, "Concrete volume", feet);
-      add("Cubic feet", volume, "cubic feet");
+      if (unitSystem === "us") {
+        addVol("Volume for bags", volume, "detail");
+      }
       addBags(volume, [
         ["60 lb bags", 0.45],
         ["80 lb bags", 0.6],

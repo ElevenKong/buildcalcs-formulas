@@ -133,31 +133,22 @@ describe("Rectangular volume (home / slab / yard)", () => {
             },
     });
 
-  it("10×10 ft × 4 in, 0% waste: net 1.23 yd³ / 0.94 m³", () => {
+  it("10×10 ft × 4 in, 0% waste: 1.23 yd³ / 33.33 ft³", () => {
     const { rows, error } = calculateEstimate(slab(0));
     assert.strictEqual(error, "");
-    assert.strictEqual(valueOf(rows, "Concrete volume"), "1.23 cubic yards");
-    assert.strictEqual(
-      valueOf(rows, "Metric volume (m³)"),
-      "0.94 cubic metres",
-    );
-    assert.strictEqual(valueOf(rows, "Cubic feet"), "33.33 cubic feet");
+    assert.strictEqual(valueOf(rows, "Concrete volume"), "1.23 yd³");
+    assert.strictEqual(valueOf(rows, "Metric volume (m³)"), undefined);
+    assert.strictEqual(valueOf(rows, "Volume for bags"), "33.33 ft³");
     assert.strictEqual(valueOf(rows, "80 lb bags"), "56 bags");
     assert.strictEqual(valueOf(rows, "60 lb bags"), "75 bags");
   });
 
   it("5% waste applies to volume and bags; net volume is a separate row (metric)", () => {
     const { rows } = calculateEstimate(slab(5, "metric"));
-    assert.strictEqual(
-      valueOf(rows, "Concrete volume (m³)"),
-      "0.95 cubic metres",
-    );
-    assert.strictEqual(
-      valueOf(rows, "Concrete volume (yd³)"),
-      "1.24 cubic yards",
-    );
-    assert.strictEqual(valueOf(rows, "Net volume (m³)"), "0.9 cubic metres");
-    assert.strictEqual(valueOf(rows, "Net volume (yd³)"), "1.18 cubic yards");
+    assert.strictEqual(valueOf(rows, "Concrete volume"), "0.95 m³");
+    assert.strictEqual(valueOf(rows, "Concrete volume (yd³)"), undefined);
+    assert.strictEqual(valueOf(rows, "Net volume"), "0.9 m³");
+    assert.strictEqual(valueOf(rows, "Net volume (yd³)"), undefined);
     assert.strictEqual(valueOf(rows, "25 kg bags"), "81 bags");
     assert.strictEqual(valueOf(rows, "20 kg bags"), "101 bags");
     assert.strictEqual(valueOf(rows, "80 lb bags"), "56 bags");
@@ -197,7 +188,7 @@ describe("Rectangular volume (home / slab / yard)", () => {
       ctx({ values: { length: 10, width: 10, thick: 0.000001, waste: 0 } }),
     );
     assert.strictEqual(error, "");
-    assert.strictEqual(valueOf(rows, "Cubic feet"), "0 cubic feet");
+    assert.strictEqual(valueOf(rows, "Volume for bags"), "0 ft³");
   });
 });
 
@@ -453,9 +444,9 @@ describe("Post-hole branch (annular volume + fit check)", () => {
   it("8 in hole / 4×4 in post / 24 in deep: 0.48 cu ft net", () => {
     const { rows, error } = calculateEstimate(holeCtx());
     assert.strictEqual(error, "");
-    assert.strictEqual(valueOf(rows, "Hole volume"), "0.7 cubic feet");
-    assert.strictEqual(valueOf(rows, "Minus post"), "0.22 cubic feet");
-    assert.strictEqual(valueOf(rows, "Concrete per hole"), "0.48 cubic feet");
+    assert.strictEqual(valueOf(rows, "Hole volume"), "0.7 ft³");
+    assert.strictEqual(valueOf(rows, "Minus post"), "0.22 ft³");
+    assert.strictEqual(valueOf(rows, "Concrete per hole"), "0.48 ft³");
     assert.strictEqual(valueOf(rows, "50 lb bags per hole"), "2 bags");
     assert.strictEqual(valueOf(rows, "80 lb bags per hole"), "1 bags");
   });
@@ -491,7 +482,7 @@ describe("Post-hole branch (annular volume + fit check)", () => {
     const { rows } = calculateEstimate(
       holeCtx({ post: "Round", values: { ...holeCtx().values, postDiameter: 4 } }),
     );
-    assert.strictEqual(valueOf(rows, "Minus post"), "0.17 cubic feet");
+    assert.strictEqual(valueOf(rows, "Minus post"), "0.17 ft³");
   });
 
   it("boundary: a post whose diagonal reaches the hole diameter is rejected", () => {
@@ -521,7 +512,7 @@ describe("Post-hole branch (annular volume + fit check)", () => {
         values: { diameter: 8, depth: 24, count: 1, waste: 0 },
       }),
     );
-    assert.strictEqual(valueOf(rows, "Minus post"), "0 cubic feet");
+    assert.strictEqual(valueOf(rows, "Minus post"), "0 ft³");
     assert.strictEqual(note, "No post? You only need the hole volume.");
   });
 
@@ -532,7 +523,7 @@ describe("Post-hole branch (annular volume + fit check)", () => {
         values: { diameter: 12, depth: 12, count: 1, waste: 0 },
       }),
     );
-    assert.strictEqual(valueOf(rows, "Hole volume"), "0.79 cubic feet");
+    assert.strictEqual(valueOf(rows, "Hole volume"), "0.79 ft³");
   });
 });
 
@@ -544,14 +535,11 @@ describe("Sonotube branch (cylinder + extra piers)", () => {
       ...overrides,
     });
 
-  it("12 in × 4 ft single pier: 0.79 ft² section, 3.14 cu ft", () => {
+  it("12 in × 4 ft single pier: 0.79 ft² section, 3.14 ft³", () => {
     const { rows } = calculateEstimate(tubeCtx());
     assert.strictEqual(valueOf(rows, "Cross-section"), "0.79 square feet");
-    assert.strictEqual(valueOf(rows, "Volume per pier"), "3.14 cubic feet");
-    assert.strictEqual(
-      valueOf(rows, "Volume per pier (yd³)"),
-      "0.12 cubic yards",
-    );
+    assert.strictEqual(valueOf(rows, "Volume per pier"), "3.14 ft³");
+    assert.strictEqual(valueOf(rows, "Volume for bags"), "3.14 ft³");
     assert.strictEqual(valueOf(rows, "80 lb bags per pier"), "6 bags");
     assert.strictEqual(valueOf(rows, "60 lb bags per pier"), "7 bags");
   });
@@ -560,24 +548,15 @@ describe("Sonotube branch (cylinder + extra piers)", () => {
     const { rows } = calculateEstimate(
       tubeCtx({ morePiers: [{ diameter: 12, depth: 4, count: 1 }] }),
     );
-    assert.strictEqual(valueOf(rows, "Volume per pier"), "3.14 cubic feet");
-    assert.strictEqual(valueOf(rows, "Total concrete"), "6.28 cubic feet");
-    assert.strictEqual(
-      valueOf(rows, "Concrete volume"),
-      "0.23 cubic yards",
-    );
+    assert.strictEqual(valueOf(rows, "Volume per pier"), "3.14 ft³");
+    assert.strictEqual(valueOf(rows, "Total concrete"), "0.23 yd³");
+    assert.strictEqual(valueOf(rows, "Concrete volume"), "0.23 yd³");
   });
 
-  it("metric shows m³ / yd³ and kg bags with the regional caveat", () => {
+  it("metric shows m³ only and kg bags with the regional caveat", () => {
     const { rows, bagNote } = calculateEstimate(tubeCtx({ unitSystem: "metric" }));
-    assert.strictEqual(
-      valueOf(rows, "Volume per pier (m³)"),
-      "0.09 cubic metres",
-    );
-    assert.strictEqual(
-      valueOf(rows, "Volume per pier (yd³)"),
-      "0.12 cubic yards",
-    );
+    assert.strictEqual(valueOf(rows, "Volume per pier"), "0.09 m³");
+    assert.strictEqual(valueOf(rows, "Volume per pier (yd³)"), undefined);
     assert.notStrictEqual(valueOf(rows, "25 kg bags"), undefined);
     assert.notStrictEqual(valueOf(rows, "20 kg bags"), undefined);
     assert.ok(bagNote.includes("check the bag weight on the shelf"));
@@ -587,7 +566,7 @@ describe("Sonotube branch (cylinder + extra piers)", () => {
     const { rows } = calculateEstimate(
       tubeCtx({ values: { diameter: 12, depth: 4, count: 0, waste: 0 } }),
     );
-    assert.strictEqual(valueOf(rows, "Total concrete"), "0 cubic feet");
+    assert.strictEqual(valueOf(rows, "Total concrete"), "0 yd³");
   });
 });
 
@@ -603,7 +582,7 @@ describe("Irregular shapes: split into rectangles and add", () => {
       ctx({ values: { length: 10, width: 10, thick: 4, waste: 0 } }),
     );
     const ft = (r) =>
-      Number(valueOf(r.rows, "Cubic feet").replace(/,/g, "").split(" ")[0]);
+      Number(valueOf(r.rows, "Volume for bags").replace(/,/g, "").split(" ")[0]);
     closeTo(ft(pieceA) + ft(pieceB), ft(bounding) - 8, 1);
   });
 
@@ -614,9 +593,9 @@ describe("Irregular shapes: split into rectangles and add", () => {
     const netOnly = calculateEstimate(
       ctx({ values: { length: 10, width: 10, thick: 4, waste: 0 } }),
     );
-    const netFt = Number(valueOf(netOnly.rows, "Cubic feet").split(" ")[0]);
+    const netFt = Number(valueOf(netOnly.rows, "Volume for bags").split(" ")[0]);
     const grossFt = Number(
-      valueOf(withWaste.rows, "Cubic feet").split(" ")[0],
+      valueOf(withWaste.rows, "Volume for bags").split(" ")[0],
     );
     closeTo(grossFt, netFt * 1.05, 1);
   });
@@ -630,11 +609,40 @@ describe("Home Column shape (round, but no post to subtract)", () => {
         values: { diameter: 12, depth: 4, count: 1, waste: 0 },
       }),
     );
-    assert.strictEqual(
-      valueOf(rows, "Concrete volume"),
-      "0.12 cubic yards",
-    );
-    assert.strictEqual(valueOf(rows, "Cubic feet"), "3.14 cubic feet");
+    assert.strictEqual(valueOf(rows, "Concrete volume"), "0.12 yd³");
+    assert.strictEqual(valueOf(rows, "Volume for bags"), "3.14 ft³");
     assert.strictEqual(valueOf(rows, "Volume per pier"), undefined);
+  });
+});
+
+describe("Volume rows follow the selected unit system", () => {
+  it("US shows no metric volume row; yd³ is the order unit and ft³ the bag basis", () => {
+    const { rows } = calculateEstimate(
+      ctx({ values: { length: 10, width: 10, thick: 4, waste: 5 } }),
+    );
+    assert.ok(
+      !rows.some(([label, value]) => `${label} ${value}`.includes("m³")),
+    );
+    assert.strictEqual(valueOf(rows, "Concrete volume"), "1.3 yd³");
+    assert.strictEqual(valueOf(rows, "Volume for bags"), "35 ft³");
+  });
+
+  it("metric shows no yd³ or ft³ volume row", () => {
+    const { rows } = calculateEstimate(
+      ctx({
+        unitSystem: "metric",
+        values: {
+          length: 3 / 0.3048,
+          width: 3 / 0.3048,
+          thick: 100 / 25.4,
+          waste: 5,
+        },
+      }),
+    );
+    assert.ok(
+      !rows.some(([label, value]) => /yd³|ft³/.test(`${label} ${value}`)),
+    );
+    assert.strictEqual(valueOf(rows, "Concrete volume"), "0.95 m³");
+    assert.strictEqual(valueOf(rows, "Net volume"), "0.9 m³");
   });
 });
