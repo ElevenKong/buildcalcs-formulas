@@ -27,7 +27,7 @@ Assumptions:
 - Rectangular pours include the entered waste allowance, expressed as 1 + waste%. Circular pours return net geometric volume.
 - Bag counts are rounded up once after the full pour is totaled. Yields for 40/50/60/80/90 lb bags are 0.30/0.375/0.45/0.60/0.675 cu ft; UK/Australia 25 kg and 20 kg bags are counted at 0.0117 m³ and 0.00936 m³ each (roughly 85 and 107 bags per cubic metre).
 - Each lb yield is the figure printed on the Quikrete Concrete Mix (No. 1101) data sheet for that bag size — a published value per product, not a weight-to-volume rule applied to any bag. The 90 lb bag is a regional size, and another brand prints its own yield.
-- The bag rows printed on this page are 60 lb and 80 lb (plus 20 kg and 25 kg in the metric form). Counts for the 40, 50 and 90 lb sizes are printed on the Quikrete calculator page from the same yields.
+- The bag rows printed on this page are 60 lb and 80 lb in US units, or 20 kg and 25 kg instead in the metric form — never both systems at once. Counts for the 40, 50 and 90 lb sizes are printed on the Quikrete calculator page from the same yields.
 - Irregular shapes must be split into rectangles or circles and calculated separately, then added.
 
 Limitations:
@@ -51,7 +51,7 @@ Assumptions:
 
 - Standard 8 × 8 × 16 in CMU laid with 3/8 in mortar joints; the actual block is 7 5/8 × 15 5/8 in.
 - 1.125 blocks per square foot is the nominal-face figure, not 1.0 — using 1.0 is the most common estimating error here.
-- An 80 lb mortar bag lays about 32 standard blocks, the midpoint of the common 30–35 range.
+- An 80 lb mortar bag lays about 32 standard blocks, the midpoint of the common 30–35 range. In metric the bag is labelled 25 kg at 22 blocks per bag, the weight ratio of that figure (80 lb ≈ 36.29 kg); check the bag you actually buy.
 - Openings are not deducted automatically; subtract door and window area from the wall before entering dimensions.
 
 Limitations:

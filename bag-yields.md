@@ -23,7 +23,7 @@ The count is `ceil(total cubic feet / yield)`, rounded up once after the whole p
 | 25 kg | 0.0117 m³ | 85 |
 | 20 kg | 0.00936 m³ | 107 |
 
-kg bag counts use UK/Australia dry-mix yields (25 kg ≈ 0.0117 m³, 20 kg ≈ 0.0094 m³); lb rows are US retail sizes. In the UK and Australia ready-mix is ordered by the cubic metre — check the bag weight on the shelf before ordering. For [metric yardage](https://buildcalcs.io/concrete/yard-calculator), convert the result back to cubic yards before ordering.
+kg bag counts use UK/Australia dry-mix yields (20 kg ≈ 0.0094 m³, 25 kg ≈ 0.0117 m³); local bag sizes and yields vary. In the UK and Australia ready-mix is ordered by the cubic metre — check the bag weight on the shelf before ordering. For [metric yardage](https://buildcalcs.io/concrete/yard-calculator), convert the result back to cubic yards before ordering.
 
 ## Worked example
 

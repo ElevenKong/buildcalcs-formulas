@@ -22,6 +22,12 @@ export const KG25_BAG_M3 = 0.0117;
 export const KG20_BAG_M3 = 0.00936;
 /** Blocks laid per 80 lb mortar bag (midpoint of the published 30–35 range) */
 export const BLOCKS_PER_MORTAR_BAG = 32;
+/** Blocks per 25 kg mortar bag: weight ratio of 32 blocks per 80 lb (~36.29 kg) */
+export const BLOCKS_PER_25KG_MORTAR_BAG = 22;
+/** 1 lb = 0.45359237 kg (exact definition), for metric bar-weight display */
+export const LB_TO_KG = 0.45359237;
+/** 1 ft = 0.3048 m (exact definition), for metric bar-length display */
+export const FT_TO_M = 0.3048;
 /** Stock length of a reinforcing bar, ft */
 export const STICK_LENGTH_FT = 20;
 /** Standard unit weights by bar number, lb/ft (table values, not computed) */
@@ -41,7 +47,7 @@ export const REBAR_WEIGHT = {
 
 /** Regional bag-size caveat shown when metric results are displayed */
 export const BAG_MARKET_NOTE =
-  "kg bag counts use UK/Australia dry-mix yields (25 kg ≈ 0.0117 m³, 20 kg ≈ 0.0094 m³); lb rows are US retail sizes. In the UK and Australia ready-mix is ordered by the cubic metre — check the bag weight on the shelf before ordering.";
+  "kg bag counts use UK/Australia dry-mix yields (20 kg ≈ 0.0094 m³, 25 kg ≈ 0.0117 m³); local bag sizes and yields vary. In the UK and Australia ready-mix is ordered by the cubic metre — check the bag weight on the shelf before ordering.";
 
 /** Display a number with thousands separators and at most two decimals. */
 export const display = (v) =>
@@ -107,12 +113,13 @@ export function calculateEstimate(ctx) {
     }
   };
 
-  /** Bag rows: metric shows kg bags first, then the lb sizes for reference. */
+  /** Bag rows use only the current system's sizes, lightest bag first. */
   const addBags = (cubicFeet, usSizes) => {
     if (unitSystem === "metric") {
       const volumeM3 = cubicFeet * CUBIC_FT_TO_M3;
-      add("25 kg bags", bagM3(volumeM3, KG25_BAG_M3), "bags");
       add("20 kg bags", bagM3(volumeM3, KG20_BAG_M3), "bags");
+      add("25 kg bags", bagM3(volumeM3, KG25_BAG_M3), "bags");
+      return;
     }
     for (const [label, yieldFt] of usSizes) {
       add(label, bag(cubicFeet, yieldFt), "bags");
@@ -152,10 +159,10 @@ export function calculateEstimate(ctx) {
     const length =
       (along * v("length") + across * v("width")) * (1 + v("lap") / 100);
     const sticks = ceilCount(length / STICK_LENGTH_FT);
-    add("Total bar length", length, "linear ft");
+    add("Total bar length", unitSystem === "metric" ? length * FT_TO_M : length, unitSystem === "metric" ? "m" : "linear ft");
     add("Bars to cut", along + across, "pieces");
     add(`#${bar} stock (20 ft)`, sticks, "sticks");
-    add("Total weight", length * (REBAR_WEIGHT[bar] ?? 0), "lb");
+    add("Total weight", length * (REBAR_WEIGHT[bar] ?? 0) * (unitSystem === "metric" ? LB_TO_KG : 1), unitSystem === "metric" ? "kg" : "lb");
     if (priced) money("Estimated cost", sticks * v("price"));
     note =
       "Bar count comes from total length, not a cut list — check individual cuts and lap locations before ordering.";
@@ -171,7 +178,11 @@ export function calculateEstimate(ctx) {
     const order = ceilCount(net * factor);
     add("Blocks with waste", order, "blocks");
     add("Net block count", net, "blocks");
-    add("Mortar (80 lb)", ceilCount(order / BLOCKS_PER_MORTAR_BAG), "bags");
+    if (unitSystem === "metric") {
+      add("Mortar (25 kg)", ceilCount(order / BLOCKS_PER_25KG_MORTAR_BAG), "bags");
+    } else {
+      add("Mortar (80 lb)", ceilCount(order / BLOCKS_PER_MORTAR_BAG), "bags");
+    }
     add("Blocks per course", ceilCount((v("length") * 12) / 16), "blocks");
   } else if (cost) {
     /**
@@ -253,8 +264,8 @@ export function calculateEstimate(ctx) {
         add("Cross-section", area, "square feet");
         addVol("Volume per pier", per, "detail");
         addBags(per, [
-          ["80 lb bags per pier", 0.6],
           ["60 lb bags per pier", 0.45],
+          ["80 lb bags per pier", 0.6],
         ]);
         addVolume(volume, "Total concrete");
         if (priced) money("Estimated cost (80 lb)", bag(volume, 0.6) * v("price"));

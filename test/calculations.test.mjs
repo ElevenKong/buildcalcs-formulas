@@ -149,9 +149,13 @@ describe("Rectangular volume (home / slab / yard)", () => {
     assert.strictEqual(valueOf(rows, "Concrete volume (yd³)"), undefined);
     assert.strictEqual(valueOf(rows, "Net volume"), "0.9 m³");
     assert.strictEqual(valueOf(rows, "Net volume (yd³)"), undefined);
-    assert.strictEqual(valueOf(rows, "25 kg bags"), "81 bags");
     assert.strictEqual(valueOf(rows, "20 kg bags"), "101 bags");
-    assert.strictEqual(valueOf(rows, "80 lb bags"), "56 bags");
+    assert.strictEqual(valueOf(rows, "25 kg bags"), "81 bags");
+    assert.strictEqual(valueOf(rows, "80 lb bags"), undefined);
+    assert.deepStrictEqual(
+      rows.filter(([label]) => /bags/i.test(label)).map(([label]) => label),
+      ["20 kg bags", "25 kg bags"],
+    );
   });
 
   it("bag yield constants match the published size table", () => {
@@ -257,6 +261,8 @@ describe("Masonry block branch", () => {
       }),
     );
     assert.strictEqual(valueOf(rows, "Blocks per course"), "10 blocks");
+    assert.strictEqual(valueOf(rows, "Mortar (25 kg)"), "6 bags");
+    assert.strictEqual(valueOf(rows, "Mortar (80 lb)"), undefined);
   });
 
   it("5% waste: net 90 → order 95 blocks, mortar still 3 bags", () => {
@@ -374,7 +380,7 @@ describe("Rebar branch", () => {
       }),
     );
     assert.strictEqual(valueOf(rows, "Bars to cut"), "10 pieces");
-    assert.strictEqual(valueOf(rows, "Total bar length"), "39.37 linear ft");
+    assert.strictEqual(valueOf(rows, "Total bar length"), "12 m");
     assert.strictEqual(valueOf(rows, "#4 stock (20 ft)"), "2 sticks");
   });
 
@@ -386,9 +392,9 @@ describe("Rebar branch", () => {
       }),
     );
     assert.strictEqual(valueOf(rows, "Bars to cut"), "22 pieces");
-    assert.strictEqual(valueOf(rows, "Total bar length"), "238.19 linear ft");
+    assert.strictEqual(valueOf(rows, "Total bar length"), "72.6 m");
     assert.strictEqual(valueOf(rows, "#4 stock (20 ft)"), "12 sticks");
-    assert.strictEqual(valueOf(rows, "Total weight"), "159.11 lb");
+    assert.strictEqual(valueOf(rows, "Total weight"), "72.17 kg");
   });
 
   it("different bar numbers use different unit weights (#3 vs #11)", () => {
@@ -559,6 +565,7 @@ describe("Sonotube branch (cylinder + extra piers)", () => {
     assert.strictEqual(valueOf(rows, "Volume per pier (yd³)"), undefined);
     assert.notStrictEqual(valueOf(rows, "25 kg bags"), undefined);
     assert.notStrictEqual(valueOf(rows, "20 kg bags"), undefined);
+    assert.strictEqual(valueOf(rows, "80 lb bags per pier"), undefined);
     assert.ok(bagNote.includes("check the bag weight on the shelf"));
   });
 
@@ -644,5 +651,23 @@ describe("Volume rows follow the selected unit system", () => {
     );
     assert.strictEqual(valueOf(rows, "Concrete volume"), "0.95 m³");
     assert.strictEqual(valueOf(rows, "Net volume"), "0.9 m³");
+  });
+
+  it("bag sizes use only the current system, lightest first", () => {
+    const values = { length: 10, width: 10, thick: 4, waste: 0 };
+    const us = calculateEstimate(ctx({ values })).rows;
+    const metric = calculateEstimate(
+      ctx({ unitSystem: "metric", values }),
+    ).rows;
+    assert.ok(!us.some(([label]) => /kg bags/.test(label)));
+    assert.ok(!metric.some(([label]) => /lb bags/.test(label)));
+    assert.deepStrictEqual(
+      us.filter(([label]) => /lb bags/.test(label)).map(([label]) => label),
+      ["60 lb bags", "80 lb bags"],
+    );
+    assert.deepStrictEqual(
+      metric.filter(([label]) => /kg bags/.test(label)).map(([label]) => label),
+      ["20 kg bags", "25 kg bags"],
+    );
   });
 });
