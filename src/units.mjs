@@ -135,14 +135,19 @@ export const UNIT_SYSTEMS = {
   metric: { defaults: METRIC_DEFAULTS },
 };
 
-/** Only these three page flags affect the default set selected. */
+/**
+ * Only these two page flags affect the default set selected.
+ *
+ * Every calculator opens on a worked example, so no default may be blank: a blank
+ * field would leave the first screen (and any reader that does not run JavaScript)
+ * without a number. The only optional default is `price`, which stays empty to mean
+ * "no cost line".
+ */
 export const defaultsFor = (system, ctx) => {
   const { depth, holeDepth, tubeDepth, diameter, tubeDiameter, ...rest } =
     UNIT_SYSTEMS[system].defaults;
   return {
     ...rest,
-    length: ctx.steel ? "" : rest.length,
-    width: ctx.steel ? "" : rest.width,
     depth: ctx.holes ? holeDepth : ctx.tube ? tubeDepth : depth,
     diameter: ctx.tube ? tubeDiameter : diameter,
   };

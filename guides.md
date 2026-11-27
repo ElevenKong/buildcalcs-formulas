@@ -63,3 +63,29 @@ The worked numbers published in the four practical guides on **buildcalcs.io**. 
 - FAQ: 1:2:3 for slabs at roughly 3,500–4,000 PSI; 1:3:3 for footings and non-structural fill.
 - FAQ: about 30 minutes before mixed concrete is unusable, less in hot weather.
 
+
+## Tool formulas — the three inline tools
+
+Each guide embeds one small tool. Every number it prints comes from the tables above; the tool never introduces a figure the page does not already state.
+
+### Yard coverage — `/concrete/how-much-is-a-yard-of-concrete`
+
+- Coverage: `sq ft per yd³ = 27 ÷ thickness(ft)`, evaluated at 3, 3.5, 4, 5, 6 and 8 in.
+- 3 in → 108 sq ft; 3.5 in → 93; 4 in → 81; 5 in → 65; 6 in → 54; 8 in → 40.5. Whole square feet are shown except an exact half.
+- The tool takes no length, width or price: slab dimensions belong to the yard and slab calculators, and a per-yard price is local.
+
+### Curing timeline — `/concrete/how-long-does-concrete-take-to-cure`
+
+- Windows at 50–70°F: initial set 2–4 h; walkable 24–48 h; driveable 7 days; vertical forms 24 h; full strength 28 days.
+- 40–50°F: every window × 2 — 4–8 h, 48–96 h, 14 days, 48 h, 56 days — because the page says cold roughly doubles each stage.
+- Above 85°F: windows are unchanged. No published multiplier exists, so the tool only adds the warning to cover or mist within the first 24 hours.
+- Below 40°F and when freezing: no dates at all, a protection warning instead.
+- Dates are calendar days counted from the pour date at 00:00; a window that starts and ends on the same day is written once.
+
+### Mix-ratio batcher — `/concrete/mix-ratio`
+
+- Each material = volume × its parts ÷ total parts; 1:2:3 is 6 parts, so cement is 1/6, sand 2/6 and gravel 3/6.
+- 1 cu ft of 1:2:3 → 0.17 / 0.33 / 0.5 cu ft. 1 cu yd of 1:2:3 → 0.17 / 0.33 / 0.5 cu yd.
+- Part totals: 1:2:3 = 6, 1:2:4 = 7, 1:3:3 = 7, 1:1.5:3 = 5.5, 1:3:6 = 10.
+- Water is never converted to a volume: it stays "about 0.5 × the weight of the cement", because the page publishes no bulk density for cement.
+

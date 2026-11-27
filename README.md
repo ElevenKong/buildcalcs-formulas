@@ -16,7 +16,7 @@ No install step, no dependencies, Node.js 20+:
 node --test
 ```
 
-That runs the full suite covering rectangular and circular volumes, unit conversion, bag yields, waste allowances, upward rounding (including float boundaries), and the block, rebar, cost, post-hole and Sonotube branches. Every expected value was worked out by hand from the published formula. The same suite runs in GitHub Actions on every push.
+That runs the full suite covering rectangular and circular volumes, unit conversion, bag yields, waste allowances, upward rounding (including float boundaries), and the block, rebar, cost, post-hole and Sonotube branches, plus the three inline guide tools (yard coverage, curing dates, mix-ratio batching). Every expected value was worked out by hand from the published formula. The same suite runs in GitHub Actions on every push.
 
 ## Use the CLI
 

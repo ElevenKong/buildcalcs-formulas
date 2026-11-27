@@ -4,6 +4,9 @@ All notable changes to the public reference implementation behind the [calculato
 
 ## Unreleased
 
+- Added the three inline tools that sit inside the practical guides, as `src/tools.mjs` with a matching suite: yard coverage at a given thickness (27 ÷ thickness in feet), a curing timeline that turns the published stage windows into calendar dates, and a mix-ratio batcher that splits a volume into cement, sand and gravel. Above 85°F the curing windows are deliberately not shortened, and the batcher never converts water to a volume, because neither number is published.
+- Every calculator now opens on a worked example instead of an empty form: the default dimensions are computed on load, so the first screen — and any reader that does not execute JavaScript — shows a result without anyone pressing a button. The rebar page gained the 10 × 10 ft default it previously left blank, and its numbers match the published FAQ answer (22 bars, 242 linear ft, 13 stocks). No default is blank except the optional unit price, which stays empty to mean "no cost line".
+
 ## v0.1.1 — 2026-11-26
 
 - Result rows now show only the selected unit system: volume in yd³/ft³ under US units or m³ under metric, bag sizes 60/80 lb or 20/25 kg ordered lightest first, bar length and weight in m/kg under metric, and metric mortar as a 25 kg bag at 22 blocks per bag.

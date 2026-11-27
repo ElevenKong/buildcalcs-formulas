@@ -97,16 +97,28 @@ describe("Shared helpers: display, conversion, defaults", () => {
   });
 
   it("defaultsFor / pierDefaults: page context and unit system", () => {
+    // Every calculator opens on a worked example, so no required default may be blank.
+    for (const system of ["us", "metric"]) {
+      for (const pageCtx of [
+        { holes: false, tube: false },
+        { holes: true, tube: false },
+        { holes: false, tube: true },
+      ]) {
+        for (const [key, value] of Object.entries(defaultsFor(system, pageCtx))) {
+          // price is the one optional input: empty means "no cost line"
+          if (key === "price") {
+            continue;
+          }
+          assert.strictEqual(typeof value, "number", `${system}.${key}`);
+        }
+      }
+    }
     assert.strictEqual(
-      defaultsFor("us", { steel: true, holes: false, tube: false }).length,
-      "",
-    );
-    assert.strictEqual(
-      defaultsFor("us", { steel: false, holes: true, tube: false }).depth,
+      defaultsFor("us", { holes: true, tube: false }).depth,
       24,
     );
     assert.strictEqual(
-      defaultsFor("us", { steel: false, holes: false, tube: true }).diameter,
+      defaultsFor("us", { holes: false, tube: true }).diameter,
       12,
     );
     assert.deepStrictEqual(pierDefaults("metric"), {
